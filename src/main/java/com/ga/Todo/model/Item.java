@@ -1,17 +1,17 @@
 package com.ga.Todo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @Entity
-@Table(name = "categories")
-public class Category {
+@Table(name = "item")
+public class Item {
 
     @Id
     @Column
@@ -25,6 +25,9 @@ public class Category {
     private String description;
 
     @Column
+    private LocalDateTime dueDate;
+
+    @Column
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -32,7 +35,8 @@ public class Category {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category", orphanRemoval = true)
-    private List<Item> itemList;
-
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }
