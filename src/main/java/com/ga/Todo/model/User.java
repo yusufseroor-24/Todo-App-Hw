@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "users")
-@ToString(exclude = {"password", "userProfile", "receipeList", "categoryLits"})
+@ToString(exclude = {"password", "userProfile", "ItemList", "categoryLits"})
 public class User {
 
     @Id
@@ -36,7 +36,7 @@ public class User {
     private userProfile userProfile;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Item> recipeList;
+    private List<Item> ItemList;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Category> categoryList;

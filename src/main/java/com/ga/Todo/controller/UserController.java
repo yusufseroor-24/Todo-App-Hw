@@ -1,6 +1,7 @@
 package com.ga.Todo.controller;
 
 import com.ga.Todo.model.User;
+import com.ga.Todo.model.request.LoginRequest;
 import com.ga.Todo.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,12 @@ public class UserController {
     public User createUser(@RequestBody User userobject){
         System.out.println("Calling createUser ==> ");
         return userService.createUser(userobject);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest){
+        System.out.println("Calling loginUser ==> ");
+        return userService.loginUser(loginRequest);
     }
 
 }
